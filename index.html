@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <div class="jumbotron">
+      <h1 class="display-4">Mars at A Glance!</h1>
+      <p class="lead">Mars, the God of War.</p>
+        <p>He was Aries until Rome no longer found the Greeks to be convenient.</p>
+         <p>Fifth planet from the sun, but first in our hearts.</p>
+         <p>Health and wealth to the Red Planet!</p>
+      <a class="btn btn-primary btn-lg" href="/scrape" role="button">Bring Me Mars!</a>
+
+    </div>
+    <div class="container">
+        { % for item in mars %}
+      <div class="row"> 
+          <div class="col-12">
+                <h2>Latest News</h2>
+                <hr>
+                {{ mars.article_title }}
+                {{ mars.article_text }}
+                <h2>Today's Weather</h2>
+                <hr>
+                {{ mars.todays_weather }}
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+              <h2>A Glimpse of the Surface</h2>
+              <hr>
+              {{ mars.featured_image }}
+              <h2>Mars Stats</h2>
+              <hr>
+              {{ mars.mars_stats }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h2>Hemispheric Data</h2>
+          <hr>
+          {{ mars.hemispheric_data }}
+        </div>
+      </div>
+        { % endfor % }
+    </div>
+
+  </body>
+
+
+</html>
