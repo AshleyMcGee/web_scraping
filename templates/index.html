@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+  </head>
+
+  <body id="body-container">
+    <div id="jumbo" class="jumbotron">
+      <h1 class="display-4">Mars at A Glance!</h1>
+      <p class="lead">Mars, the God of War.</p>
+        <p>He was Aries until Rome no longer found the Greeks to be convenient.</p>
+         <p>Fifth planet from the sun, but first in our hearts.</p>
+         <p>Health and wealth to the Red Planet!</p>
+      <a class="btn btn-primary btn-lg" href="/scrape" role="button">Bring Me Mars!</a>
+    </div>
+    <div class="container">
+      <div class="row"> 
+          <div class="col-12">
+                <h2 id="latest-news">Latest News</h2>
+                <hr>
+                <h4>{{ mars.article_title }}</h4>
+                <p id="article">{{ mars.artile_text }}</p>
+                <h2 id="today-weather">Today's Weather</h2>
+                <hr>
+                <p id="weather">{{ mars.todays_weather }}</p>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+              <h2 id="glimpse">A Glimpse of the Surface</h2>
+              <hr>
+              <img id="featured" class="img-fluid" src="{{ mars.featured_image }}">
+              <h2 id="mars-title">Mars Stats</h2>
+              <hr>
+              <div id="stats">{{ mars.mars_stats | safe }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="sucky-column">
+        <div class="col-6">          
+          <h2 id="hemispheres">Hemispheric Data</h2>
+          <hr>
+          {% for hemisphere in mars.hemispheric_data %}
+            <h3 id="hem-title">{{ hemisphere.title }}</h3>
+            <hr>
+            <img class="img-fluid imgs-grid" src="{{ hemisphere.image_url }}">
+            {% endfor %}
+        </div>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>

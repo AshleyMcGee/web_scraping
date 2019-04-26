@@ -4,13 +4,14 @@ from splinter import Browser
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
+import time
 
 
 def scrape():
 
     #Connect chromedriver with splinter's Browser object.
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=True)
+    browser = Browser('chrome', **executable_path, headless=False)
 
     #create dictionary off of every single variable, make each variable a key
     #be careful not to accidentally change how things work by changing variable names
@@ -28,36 +29,32 @@ def scrape():
     article_title = soup.find_all("div", class_="content_title")[0].text.strip()
     mars['article_title'] = article_title
 
-    browser.click_link_by_partial_text(article_title)
-
     #Latest article paragraph.
-    html = browser.html
-    soup = BeautifulSoup(html, "html.parser")
-    paragraph = soup.find('div', class_='wysiwyg_content').find_all("p")[0].text.strip()
+    paragraph = soup.find('div', class_='article_teaser_body').text.strip()
     mars['artile_text'] = paragraph
 
     #Reinitialize the url for every click-through
     #On main page, click thorugh full image button
+    browser.visit("https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars")
     html2 = browser.html
     soup2 = BeautifulSoup(html2, "html.parser")
-    full_image = soup2.find("footer").find("a", class_="button fancybox").text.strip()
+    
 
-    browser.click_link_by_partial_text(full_image)
+    browser.click_link_by_partial_text("FULL IMAGE")
 
     #On carosel page, click through more info
     html3 = browser.html
     soup3 = BeautifulSoup(html3, "html.parser")
-    more_info = soup3.find("div", class_="fancybox-title fancybox-title-outside-wrap")\
-            .find("a", class_="button").text.strip()
-
-    browser.click_link_by_partial_text(more_info)
+    time.sleep(3)
+    browser.click_link_by_text("more info     ")
 
     #Full-sized image link
     html4 = browser.html
     soup4 = BeautifulSoup(html4, "html.parser")
+    base_url_featured = "https://www.jpl.nasa.gov"
 
     for i in soup4.find_all('figure'):
-        featured_image = (i.a['href'])
+        featured_image = base_url_featured + (i.a['href'])
 
     mars['featured_image'] = featured_image
 

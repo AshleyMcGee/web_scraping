@@ -1,0 +1,57 @@
+#body-container {
+
+    background-color: black;
+    color: white;
+
+}
+
+#jumbo {
+
+    text-align: center;
+    background-image: url("https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/545320/28baaebd3872ba315e744aa90db5326c4430a242.jpg");
+    color: white;
+
+}
+
+hr {
+
+    background-color: white;
+
+}
+
+#latest-news, #today-weather, #glimpse, #mars-title, #hemispheres {
+
+    padding-top: 20px;
+}
+
+#article {
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+
+#stats {
+
+    padding: 20px;
+    width: 100%;
+    margin: auto;
+
+}
+
+#hem-title {
+
+    padding-top: 20px;
+
+}
+
+#sucky-column {
+
+    width: 100%;
+    margin: auto;
+
+}
+
+
+
